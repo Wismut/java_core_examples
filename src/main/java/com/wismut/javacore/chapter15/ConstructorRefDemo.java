@@ -1,7 +1,13 @@
 package main.java.com.wismut.javacore.chapter15;
 
+import java.util.function.BinaryOperator;
+
 interface MyFunc4 {
     MyClass2 func(int n);
+}
+
+interface MyArrayCreator<T> {
+    T func(int n);
 }
 
 class MyClass2 {
@@ -27,5 +33,11 @@ public class ConstructorRefDemo {
         MyClass2 mc = myClassCons.func(100);
 
         System.out.println("val in mc is " + mc.getVal());
+
+        MyArrayCreator<MyClass2[]> mcArrayCons = MyClass2[]::new;
+
+        MyClass2[] a = mcArrayCons.func(2);
+        a[0] = new MyClass2(1);
+        a[1] = new MyClass2(2);
     }
 }

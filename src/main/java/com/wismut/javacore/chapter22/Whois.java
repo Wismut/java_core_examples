@@ -1,4 +1,4 @@
-package main.java.com.wismut.javacore.package22;
+package main.java.com.wismut.javacore.chapter22;
 
 
 import java.io.InputStream;

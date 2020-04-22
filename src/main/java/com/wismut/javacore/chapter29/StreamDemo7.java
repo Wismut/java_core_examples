@@ -1,6 +1,7 @@
 package main.java.com.wismut.javacore.chapter29;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,7 +20,10 @@ public class StreamDemo7 {
 
         Stream<NamePhone> nameAndPhone = myList.stream().map((a) -> new NamePhone(a.name, a.phonenum));
 
-        List<NamePhone> npList = nameAndPhone.collect(Collectors.toList());
+        List<NamePhone> npList = nameAndPhone.collect(
+                LinkedList::new,
+                LinkedList::add,
+                LinkedList::addAll);
 
         System.out.println("Name and phone numbers in a list:");
         for (NamePhone e : npList) {

@@ -13,12 +13,14 @@ public class CallableDemo {
         f2 = es.submit(new Hypot(3, 4));
         f3 = es.submit(new Factorial(5));
         try {
-            System.out.println(f.get());
-            System.out.println(f2.get());
-            System.out.println(f3.get());
+            System.out.println(f.get(10, TimeUnit.MILLISECONDS));
+            System.out.println(f2.get(10, TimeUnit.MILLISECONDS));
+            System.out.println(f3.get(10, TimeUnit.MILLISECONDS));
         } catch (InterruptedException e) {
-            System.out.println();
+            System.out.println(e);
         } catch (ExecutionException e) {
+            System.out.println(e);
+        } catch (TimeoutException e) {
             System.out.println(e);
         }
         es.shutdown();

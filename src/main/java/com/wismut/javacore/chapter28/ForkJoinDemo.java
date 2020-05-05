@@ -1,6 +1,5 @@
 package main.java.com.wismut.javacore.chapter28;
 
-import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
 class SqrtTransform extends RecursiveAction {
@@ -30,7 +29,6 @@ class SqrtTransform extends RecursiveAction {
 
 public class ForkJoinDemo {
     public static void main(String[] args) {
-        ForkJoinPool fjp = new ForkJoinPool();
         double[] nums = new double[100000];
         for (int i = 0; i < nums.length; i++) {
             nums[i] = (double) i;
@@ -41,11 +39,11 @@ public class ForkJoinDemo {
         }
         System.out.println("\n");
         SqrtTransform task = new SqrtTransform(nums, 0, nums.length);
-        fjp.invoke(task);
+        task.invoke();
         System.out.println("A portion of the transformed sequence (to four decimal places):");
         for (int i = 0; i < 10; i++) {
             System.out.printf("%.4f ", nums[i]);
-            System.out.println();
         }
+        System.out.println();
     }
 }
